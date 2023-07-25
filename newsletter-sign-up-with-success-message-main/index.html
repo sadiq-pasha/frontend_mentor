@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Newsletter sign-up form with success message</title>
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -20,10 +22,10 @@
     }
 
     .newsletter-sign-up-modal {
-      height: 60%;
-      max-width: 65%;
+      max-height: 60%;
+      max-width: 70%;
       background-color: white;
-      border-radius: 40px;
+      border-radius: 35px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -31,13 +33,88 @@
     }
 
     .sign-up-image {
+      height: 593px;
+      width: 400px;
+      margin: 25px 25px 25px 0px;
+      border-radius: 20px;
       background-image: url("./assets/images/illustration-sign-up-desktop.svg");
       background-repeat: no-repeat;
       background-position: center;
-      /* background-color: yellow; */
-      height: 593px;
-      width: 400px;
     }
+
+    .sign-up-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      max-width: 40%;
+      row-gap: 25px;
+      margin: auto;
+      padding: 25px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #242742;
+    }
+
+    .bullet-points {
+      display: grid;
+      grid-template-columns: 21px 1fr;
+      grid-template-rows: auto;
+      gap: 15px;
+      justify-items: start;
+      align-items: center;
+    }
+
+    .email-address-input {
+      margin-top: 15px;
+      width: 100%;
+      position: relative;
+    }
+
+    #email-input {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: 1px solid #C5C5C5;
+      border-radius: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    #invalid-email-notification {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-weight: 700;
+      font-size: 12px;
+      color: #ff6257;
+    }
+
+    #email-input:invalid {
+      background-color: #FFE8E6;
+      border: 1px solid #ff6257;
+      color: #ff6257;
+    }
+
+    #subscribe-submit-button {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #232742;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -48,27 +125,35 @@
   <img src="./design/desktop-design.jpg" alt="">
   <div class="placeholder">
     <div class="newsletter-sign-up-modal">
-      <div class="sign-up-details"></div>
       <div class="sign-up-image"></div>
+      <div class="sign-up-details">
+        <div style="font-weight: 700; font-size: 55px;">
+          Stay updated!
+        </div>
+        <div>
+          Join 60,000+ product managers receiving monthly updates on:
+        </div>
+        <div class="bullet-points">
+          <img src="./assets/images/icon-list.svg" alt=""><div>Product discovery and building what matters</div>
+          <img src="./assets/images/icon-list.svg" alt=""><div>Measuring to ensure updates are a success</div>
+          <img src="./assets/images/icon-list.svg" alt=""><div>And much more!</div>
+        </div>
+        <form action="" method="post">
+          <div class="email-address-input">
+            <div style="font-weight: 700; font-size: 12px;">
+              Email address
+            </div>
+            <div id="invalid-email-notification">
+              Valid email required
+            </div>
+            <input id="email-input" type="email" placeholder="email@company.com" onchange="validateInput()">
+            <input id="subscribe-submit-button" type="submit" value="Subscribe to monthly newsletter">
+          </div>
+        </form>
+      </div>
     </div>
   </div>
   <img src="./design/mobile-design.jpg" alt="">
-  <!-- Sign-up form start -->
-
-  Stay updated!
-
-  Join 60,000+ product managers receiving monthly updates on:
-
-  Product discovery and building what matters
-  Measuring to ensure updates are a success
-  And much more!
-
-  Email address
-  email@company.com
-
-  Subscribe to monthly newsletter
-
-  <!-- Sign-up form end -->
 
   <!-- Success message start -->
 
@@ -80,5 +165,19 @@
   Dismiss message
 
   <!-- Success message end -->
+  <script>
+    const emailInputField = document.getElementById('email-input');
+    emailInputField.addEventListener('input', validateInput)
+
+    const invalidEmailNotificationDiv = document.getElementById('invalid-email-notification');
+
+    function validateInput() {
+      if (!emailInputField.checkValidity()) {
+        invalidEmailNotificationDiv.style.visibility = 'visible'
+      } else {
+        invalidEmailNotificationDiv.style.visibility = 'hidden'
+      }
+    }
+  </script>
 </body>
 </html>
