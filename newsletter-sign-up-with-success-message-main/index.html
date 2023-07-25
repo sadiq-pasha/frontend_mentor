@@ -10,12 +10,49 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    .placeholder {
+      height: 1080px;
+      width: 1440px;
+      background-color: #36384D;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .newsletter-sign-up-modal {
+      height: 60%;
+      max-width: 65%;
+      background-color: white;
+      border-radius: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+
+    .sign-up-image {
+      background-image: url("./assets/images/illustration-sign-up-desktop.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      /* background-color: yellow; */
+      height: 593px;
+      width: 400px;
+    }
   </style>
 </head>
 <body>
-
+  <img src="./assets/images/icon-list.svg" alt="">
+  <img src="./assets/images/icon-success.svg" alt="">
+  <img src="./assets/images/illustration-sign-up-desktop.svg" alt="">
+  <img src="./assets/images/illustration-sign-up-mobile.svg" alt="">
+  <img src="./design/desktop-design.jpg" alt="">
+  <div class="placeholder">
+    <div class="newsletter-sign-up-modal">
+      <div class="sign-up-details"></div>
+      <div class="sign-up-image"></div>
+    </div>
+  </div>
+  <img src="./design/mobile-design.jpg" alt="">
   <!-- Sign-up form start -->
 
   Stay updated!
@@ -43,10 +80,5 @@
   Dismiss message
 
   <!-- Success message end -->
-  
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
-  </div>
 </body>
 </html>
