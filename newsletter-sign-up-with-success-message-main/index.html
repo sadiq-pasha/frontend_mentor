@@ -22,11 +22,11 @@
     }
 
     .newsletter-sign-up-modal {
+      display: flex;
       max-height: 60%;
       max-width: 70%;
       background-color: white;
       border-radius: 35px;
-      display: flex;
       justify-content: center;
       align-items: center;
       flex-direction: row-reverse;
@@ -115,6 +115,22 @@
       cursor: pointer;
     }
 
+    .signup-success-modal {
+      display: none;
+      max-height: 60%;
+      max-width: 70%;
+      background-color: white;
+      border-radius: 35px;
+      /* display: flex; */
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #242742;
+    }
+
   </style>
 </head>
 <body>
@@ -152,18 +168,19 @@
         </form>
       </div>
     </div>
+    <div class="signup-success-modal">
+      <img src="./assets/images/icon-success.svg" alt="">
+      <div style="font-weight: 700; font-size: 55px;">
+        Thanks for subscribing!
+      </div>
+    </div>
   </div>
   <img src="./design/mobile-design.jpg" alt="">
-
   <!-- Success message start -->
-
-  Thanks for subscribing!
-
   A confirmation email has been sent to ash@loremcompany.com. 
   Please open it and click the button inside to confirm your subscription.
 
   Dismiss message
-
   <!-- Success message end -->
   <script>
     const emailInputField = document.getElementById('email-input');
