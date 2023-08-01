@@ -21,7 +21,7 @@
       align-items: center;
     }
 
-    .newsletter-sign-up-modal {
+    #newsletter-sign-up-modal {
       display: flex;
       max-height: 60%;
       max-width: 70%;
@@ -32,12 +32,12 @@
       flex-direction: row-reverse;
     }
 
-    .sign-up-image {
+    #sign-up-image {
       height: 593px;
       width: 400px;
       margin: 25px 25px 25px 0px;
       border-radius: 20px;
-      background-image: url("./assets/images/illustration-sign-up-desktop.svg");
+      /* background-image: url("./assets/images/illustration-sign-up-desktop.svg"); */
       background-repeat: no-repeat;
       background-position: center;
     }
@@ -115,20 +115,36 @@
       cursor: pointer;
     }
 
-    .signup-success-modal {
+    #signup-success-modal {
+      box-sizing: border-box;
       display: none;
-      max-height: 60%;
-      max-width: 70%;
+      max-height: 50%;
+      max-width: 35%;
       background-color: white;
       border-radius: 35px;
-      /* display: flex; */
-      justify-content: center;
-      align-items: center;
+      justify-content: left;
+      align-items: start;
+      gap: 30px;
+      padding: 70px;
       flex-direction: column;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
       font-size: 16px;
       color: #242742;
+    }
+
+    #dismiss-success-message {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #232742;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
     }
 
   </style>
@@ -138,10 +154,10 @@
   <img src="./assets/images/icon-success.svg" alt="">
   <img src="./assets/images/illustration-sign-up-desktop.svg" alt="">
   <img src="./assets/images/illustration-sign-up-mobile.svg" alt="">
-  <img src="./design/desktop-design.jpg" alt="">
+  <img src="./design/desktop-success.jpg" alt="">
   <div class="placeholder">
-    <div class="newsletter-sign-up-modal">
-      <div class="sign-up-image"></div>
+    <div id="newsletter-sign-up-modal">
+      <div id="sign-up-image"></div>
       <div class="sign-up-details">
         <div style="font-weight: 700; font-size: 55px;">
           Stay updated!
@@ -154,7 +170,7 @@
           <img src="./assets/images/icon-list.svg" alt=""><div>Measuring to ensure updates are a success</div>
           <img src="./assets/images/icon-list.svg" alt=""><div>And much more!</div>
         </div>
-        <form action="" method="post">
+        <form id="newsletter-signup-form" action="" method="post">
           <div class="email-address-input">
             <div style="font-weight: 700; font-size: 12px;">
               Email address
@@ -168,26 +184,26 @@
         </form>
       </div>
     </div>
-    <div class="signup-success-modal">
+    <div id="signup-success-modal">
       <img src="./assets/images/icon-success.svg" alt="">
       <div style="font-weight: 700; font-size: 55px;">
         Thanks for subscribing!
       </div>
+      <div style="font-size: 16px;">
+        A confirmation email has been sent to <span id="userEmail" style="font-weight: 700;"></span>. 
+        Please open it and click the button inside to confirm your subscription.
+      </div>
+      <button id="dismiss-success-message">
+        Dismiss message
+      </button>
     </div>
   </div>
   <img src="./design/mobile-design.jpg" alt="">
-  <!-- Success message start -->
-  A confirmation email has been sent to ash@loremcompany.com. 
-  Please open it and click the button inside to confirm your subscription.
-
-  Dismiss message
-  <!-- Success message end -->
   <script>
+    // if email address entered by user is valid, hide the error message, else show. Re-evaluate on every character input.
     const emailInputField = document.getElementById('email-input');
+    const subscribeSubmitButton = document.getElementById('subscribe-submit-button')
     emailInputField.addEventListener('input', validateInput)
-
-    const invalidEmailNotificationDiv = document.getElementById('invalid-email-notification');
-
     function validateInput() {
       if (!emailInputField.checkValidity()) {
         invalidEmailNotificationDiv.style.visibility = 'visible'
@@ -195,6 +211,41 @@
         invalidEmailNotificationDiv.style.visibility = 'hidden'
       }
     }
+    
+    // When form is submitted, get email entered by user and populate on success modal, hide signup modal, show success modal.
+    const invalidEmailNotificationDiv = document.getElementById('invalid-email-notification');
+    const subscribeSuccessDiv = document.getElementById('signup-success-modal');
+    const signupModal = document.getElementById('newsletter-sign-up-modal');
+    const form = document.getElementById('newsletter-signup-form')
+    const userEmail = document.getElementById('userEmail')
+    form.addEventListener('submit', function(event) {
+      event.preventDefault()
+      userEmail.textContent = emailInputField.value
+      subscribeSuccessDiv.style.display = 'flex'
+      signupModal.style.display = 'none'
+    })
+
+    // when dismiss button is pressed, hide success modal, show signup modal.
+    document.getElementById("signup-success-modal").onclick = function() {
+            subscribeSuccessDiv.style.display = 'none'
+            signupModal.style.display = 'flex'
+    }
+
+    // change background image when width is < 375px
+    function changeBackgroundImage() {
+      console.log(window.innerWidth)
+      const signupDivBackgroundImage = document.getElementById("sign-up-image");
+      if (window.innerWidth < 375) {
+        console.log('small', window.innerWidth)
+        signupDivBackgroundImage.style.backgroundImage = 'url("./assets/images/illustration-sign-up-mobile.svg")'; // Set the new image source
+      } else {
+        console.log('large', window.innerWidth)
+        signupDivBackgroundImage.style.backgroundImage = 'url("./assets/images/illustration-sign-up-desktop.svg")'; // Revert back to the default image
+      }
+    } 
+    // Call the function when the page loads and on window resize
+    window.onload = changeBackgroundImage;
+    window.onresize = changeBackgroundImage;
   </script>
 </body>
 </html>
