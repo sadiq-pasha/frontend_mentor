@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Product preview card component</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    body {
+      display:flex;
+      justify-content:center;
+      align-items: center;
+      background-color: #F3EAE3;
+      margin: 0px;
+      height: 100vh;
+    }
+    
+    .product-card {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      border-radius: 5px;
+      max-height: 80%;
+      max-width: 40%;
+      gap: 10px;
+      overflow: hidden;
+    }
+
+    .product-image {
+      width: 50%;
+      /* flex-shrink: 0; */
+    }
+    
+    .contain-image {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+    }
+
+    .product-details {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      padding: 25px;
+      gap: 20px;
+    }
+
+    .product-type {
+      font-family: "Montserrat";
+      color: gray;
+      font-size: 10px;
+      letter-spacing: 5px;
+    }
+
+    .product-blurb {
+      font-family: "Montserrat";
+      color: gray;
+      font-size: 12px;
+    }
+
+    .product-name {
+      font-family: "Fraunces";
+      font-size: 25px;
+    }
+    
+    .product-prices {
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+    }
+    
+    .product-current-price {
+      font-family: "Fraunces";
+      font-size: 25px;
+      color: #3D8168;
+    }
+    
+    .product-original-price {
+      text-decoration: line-through;
+      font-family: "Montserrat";
+      font-size: 12px;
+      color: gray;
+      margin: 5px;
+    }
+    
+    .add-to-cart-button {
+      display: grid;
+      justify-content: center;
+      align-items: center;
+      grid-auto-flow: column;
+      background-color: #3D8168;
+      border: none;
+      width: 100%;
+      height: 35px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+    }
+
+    .add-to-cart-button:hover {
+      background-color: #1A4031;
+      cursor: pointer;
+    }
+
+    @media screen and (max-width: 800px) {
+      .product-card {
+        flex-direction: column;
+        max-height: 90%;
+      }
+      .product-image {
+      width: 100%;
+      }
+      .product-details {
+      width: 80%;
+      }
+      .product-prices {
+        flex-direction: column;
+      }
+    }
+    
+    @media screen and (max-width: 400px) {
+      .product-card {
+        flex-direction: column;
+        max-height: 95%;
+        max-width: 90%;
+      }
+      .product-image {
+        text-align: center;
+        max-height: 20%;
+        /* width: 100%; */
+      }
+      .product-details {
+      width: 80%;
+      }
+      .product-prices {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <script>
+    function changeImageSource() {
+      const images = document.getElementsByClassName("contain-image");
+      if (images.length > 0) {
+      const image = images[0];
+        if (window.innerWidth < 800) {
+          image.src = "./images/image-product-mobile.jpg"; // Set the new image source
+          image.alt = "image of a perfume bottle surrounded by green leaves"; // Set the new image alt text (optional)
+        } else {
+          image.src = "./images/image-product-desktop.jpg"; // Revert back to the default image
+          image.alt = "image of a perfume bottle surrounded by green leaves"; // Set the default alt text (optional)
+        }
+      }
+    } 
+    // Call the function when the page loads and on window resize
+    window.onload = changeImageSource;
+    window.onresize = changeImageSource;
+  </script>
+</head>
+<body>
+    <div class="product-card">
+      <div class="product-image">
+        <img class='contain-image' src="./images/image-product-desktop.jpg" alt="image of a perfume bottle surrounded by green leaves">
+      </div>
+      <div class="product-details">
+        <div class="product-type">PERFUME</div>
+        <div class="product-name">Gabrielle Essence Eau De Parfum</div>
+        <div class="product-blurb">
+          A floral, solar and voluptuous interpretation composed by Olivier Polge, 
+          Perfumer-Creator for the House of CHANEL.
+        </div>
+        <div class="product-prices">
+          <div class="product-current-price">$149.99</div>
+          <div class="product-original-price">$169.99</div>
+        </div>
+        <button class="add-to-cart-button">
+          <i class="fa fa-shopping-cart" style="font-size:20px; margin-right:10px;"></i>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+</body>
+</html>

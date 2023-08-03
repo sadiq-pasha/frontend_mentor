@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Newsletter sign-up form with success message</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .placeholder {
+      height: 100%;
+      width: 100%;
+      background-color: #36384D;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #newsletter-sign-up-modal {
+      display: flex;
+      max-height: 60%;
+      max-width: 70%;
+      background-color: white;
+      border-radius: 35px;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row-reverse;
+    }
+    
+    @media (max-width: 999px) {
+      #newsletter-sign-up-modal {
+        max-width: 100%;
+      }
+
+      .placeholder > #signup-success-modal {
+      max-width: 60%;
+      }
+    }
+    
+    @media (max-width: 650px) {
+      #newsletter-sign-up-modal {
+        /* max-width: 100%; */
+      border-radius: 0px 0px;
+      flex-direction: column;
+      width:  375px;
+      }
+      
+      #newsletter-sign-up-modal > #sign-up-image {
+        height: 284px;
+        width:  375px;
+        margin: 0px;
+        border-radius: 0px;
+        /* background-image: url("./assets/images/illustration-sign-up-desktop.svg"); */
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      
+      #newsletter-sign-up-modal > .sign-up-details {
+        max-width: 100%;
+      }
+      
+      .placeholder > #signup-success-modal {
+      max-width: 100%;
+      }
+    }
+    
+  #sign-up-image {
+      height: 593px;
+      width: 400px;
+      margin: 25px 25px 25px 0px;
+      border-radius: 20px;
+      /* background-image: url("./assets/images/illustration-sign-up-desktop.svg"); */
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .sign-up-details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      max-width: 40%;
+      row-gap: 25px;
+      margin: auto;
+      padding: 25px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #242742;
+    }
+
+    .bullet-points {
+      display: grid;
+      grid-template-columns: 21px 1fr;
+      grid-template-rows: auto;
+      gap: 15px;
+      justify-items: start;
+      align-items: center;
+    }
+
+    .email-address-input {
+      margin-top: 15px;
+      width: 100%;
+      position: relative;
+    }
+
+    #email-input {
+      box-sizing: border-box;
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: 1px solid #C5C5C5;
+      border-radius: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    
+    #invalid-email-notification {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-weight: 700;
+      font-size: 12px;
+      color: #ff6257;
+    }
+
+    #email-input:invalid {
+      background-color: #FFE8E6;
+      border: 1px solid #ff6257;
+      color: #ff6257;
+    }
+
+    #subscribe-submit-button {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #232742;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #subscribe-submit-button:hover {
+      background-image: linear-gradient(to right, #FF5478, #FF693E);
+      box-shadow: 0px 12px 12px #FEC7C4;
+    }
+
+    #signup-success-modal {
+      box-sizing: border-box;
+      display: none;
+      max-height: 50%;
+      max-width: 35%;
+      background-color: white;
+      border-radius: 35px;
+      justify-content: left;
+      align-items: start;
+      gap: 30px;
+      padding: 70px;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+      color: #242742;
+    }
+
+    #dismiss-success-message {
+      width: 100%;
+      margin: 10px 0px;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background-color: #232742;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #dismiss-success-message:hover {
+      background-image: linear-gradient(to right, #FF5478, #FF693E);
+      box-shadow: 0px 12px 12px #FEC7C4;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- <img src="./assets/images/icon-list.svg" alt="">
+  <img src="./assets/images/icon-success.svg" alt="">
+  <img src="./assets/images/illustration-sign-up-desktop.svg" alt="">
+  <img src="./assets/images/illustration-sign-up-mobile.svg" alt="">
+  <img src="./design/desktop-success.jpg" alt=""> -->
+  <div class="placeholder">
+    <div id="newsletter-sign-up-modal">
+      <div id="sign-up-image"></div>
+      <div class="sign-up-details">
+        <div style="font-weight: 700; font-size: 55px;">
+          Stay updated!
+        </div>
+        <div>
+          Join 60,000+ product managers receiving monthly updates on:
+        </div>
+        <div class="bullet-points">
+          <img src="./assets/images/icon-list.svg" alt=""><div>Product discovery and building what matters</div>
+          <img src="./assets/images/icon-list.svg" alt=""><div>Measuring to ensure updates are a success</div>
+          <img src="./assets/images/icon-list.svg" alt=""><div>And much more!</div>
+        </div>
+        <form id="newsletter-signup-form" action="" method="post">
+          <div class="email-address-input">
+            <div style="font-weight: 700; font-size: 12px;">
+              Email address
+            </div>
+            <div id="invalid-email-notification">
+              Valid email required
+            </div>
+            <input id="email-input" type="email" placeholder="email@company.com" onchange="validateInput()">
+            <input id="subscribe-submit-button" type="submit" value="Subscribe to monthly newsletter">
+          </div>
+        </form>
+      </div>
+    </div>
+    <div id="signup-success-modal">
+      <img src="./assets/images/icon-success.svg" alt="">
+      <div style="font-weight: 700; font-size: 55px; ">
+        Thanks for subscribing!
+      </div>
+      <div style="font-size: 16px;">
+        A confirmation email has been sent to <span id="userEmail" style="font-weight: 700;"></span>. 
+        Please open it and click the button inside to confirm your subscription.
+      </div>
+      <button id="dismiss-success-message">
+        Dismiss message
+      </button>
+    </div>
+  </div>
+  <script>
+    // if email address entered by user is valid, hide the error message, else show. Re-evaluate on every character input.
+    const emailInputField = document.getElementById('email-input');
+    const subscribeSubmitButton = document.getElementById('subscribe-submit-button')
+    emailInputField.addEventListener('input', validateInput)
+    function validateInput() {
+      if (!emailInputField.checkValidity()) {
+        invalidEmailNotificationDiv.style.visibility = 'visible'
+      } else {
+        invalidEmailNotificationDiv.style.visibility = 'hidden'
+      }
+    }
+    
+    // When form is submitted, get email entered by user and populate on success modal, hide signup modal, show success modal.
+    const invalidEmailNotificationDiv = document.getElementById('invalid-email-notification');
+    const subscribeSuccessDiv = document.getElementById('signup-success-modal');
+    const signupModal = document.getElementById('newsletter-sign-up-modal');
+    const form = document.getElementById('newsletter-signup-form')
+    const userEmail = document.getElementById('userEmail')
+    form.addEventListener('submit', function(event) {
+      event.preventDefault()
+      userEmail.textContent = emailInputField.value
+      subscribeSuccessDiv.style.display = 'flex'
+      signupModal.style.display = 'none'
+    })
+
+    // when dismiss button is pressed, hide success modal, show signup modal.
+    document.getElementById("signup-success-modal").onclick = function() {
+            subscribeSuccessDiv.style.display = 'none'
+            signupModal.style.display = 'flex'
+    }
+
+    // change background image when width is < 375px
+    function changeBackgroundImage() {
+      console.log(window.innerWidth)
+      const signupDivBackgroundImage = document.getElementById("sign-up-image");
+      if (window.innerWidth < 650) {
+        console.log('small', window.innerWidth)
+        signupDivBackgroundImage.style.backgroundImage = 'url("./assets/images/illustration-sign-up-mobile.svg")'; // Set the new image source
+      } else {
+        console.log('large', window.innerWidth)
+        signupDivBackgroundImage.style.backgroundImage = 'url("./assets/images/illustration-sign-up-desktop.svg")'; // Revert back to the default image
+      }
+    } 
+    // Call the function when the page loads and on window resize
+    window.onload = changeBackgroundImage;
+    window.onresize = changeBackgroundImage;
+  </script>
+</body>
+</html>
