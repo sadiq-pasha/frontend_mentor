@@ -13,8 +13,8 @@
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
     .placeholder {
-      height: 1080px;
-      width: 1440px;
+      height: 100%;
+      width: 100%;
       background-color: #36384D;
       display: flex;
       justify-content: center;
@@ -31,8 +31,45 @@
       align-items: center;
       flex-direction: row-reverse;
     }
+    
+    @media (max-width: 999px) {
+      #newsletter-sign-up-modal {
+        max-width: 100%;
+      }
 
-    #sign-up-image {
+      .placeholder > #signup-success-modal {
+      max-width: 60%;
+      }
+    }
+    
+    @media (max-width: 650px) {
+      #newsletter-sign-up-modal {
+        /* max-width: 100%; */
+      border-radius: 0px 0px;
+      flex-direction: column;
+      width:  375px;
+      }
+      
+      #newsletter-sign-up-modal > #sign-up-image {
+        height: 284px;
+        width:  375px;
+        margin: 0px;
+        border-radius: 0px;
+        /* background-image: url("./assets/images/illustration-sign-up-desktop.svg"); */
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      
+      #newsletter-sign-up-modal > .sign-up-details {
+        max-width: 100%;
+      }
+      
+      .placeholder > #signup-success-modal {
+      max-width: 100%;
+      }
+    }
+    
+  #sign-up-image {
       height: 593px;
       width: 400px;
       margin: 25px 25px 25px 0px;
@@ -114,6 +151,10 @@
       font-size: 16px;
       cursor: pointer;
     }
+    #subscribe-submit-button:hover {
+      background-image: linear-gradient(to right, #FF5478, #FF693E);
+      box-shadow: 0px 12px 12px #FEC7C4;
+    }
 
     #signup-success-modal {
       box-sizing: border-box;
@@ -146,15 +187,19 @@
       font-size: 16px;
       cursor: pointer;
     }
+    #dismiss-success-message:hover {
+      background-image: linear-gradient(to right, #FF5478, #FF693E);
+      box-shadow: 0px 12px 12px #FEC7C4;
+    }
 
   </style>
 </head>
 <body>
-  <img src="./assets/images/icon-list.svg" alt="">
+  <!-- <img src="./assets/images/icon-list.svg" alt="">
   <img src="./assets/images/icon-success.svg" alt="">
   <img src="./assets/images/illustration-sign-up-desktop.svg" alt="">
   <img src="./assets/images/illustration-sign-up-mobile.svg" alt="">
-  <img src="./design/desktop-success.jpg" alt="">
+  <img src="./design/desktop-success.jpg" alt=""> -->
   <div class="placeholder">
     <div id="newsletter-sign-up-modal">
       <div id="sign-up-image"></div>
@@ -186,7 +231,7 @@
     </div>
     <div id="signup-success-modal">
       <img src="./assets/images/icon-success.svg" alt="">
-      <div style="font-weight: 700; font-size: 55px;">
+      <div style="font-weight: 700; font-size: 55px; ">
         Thanks for subscribing!
       </div>
       <div style="font-size: 16px;">
@@ -198,7 +243,6 @@
       </button>
     </div>
   </div>
-  <img src="./design/mobile-design.jpg" alt="">
   <script>
     // if email address entered by user is valid, hide the error message, else show. Re-evaluate on every character input.
     const emailInputField = document.getElementById('email-input');
@@ -235,7 +279,7 @@
     function changeBackgroundImage() {
       console.log(window.innerWidth)
       const signupDivBackgroundImage = document.getElementById("sign-up-image");
-      if (window.innerWidth < 375) {
+      if (window.innerWidth < 650) {
         console.log('small', window.innerWidth)
         signupDivBackgroundImage.style.backgroundImage = 'url("./assets/images/illustration-sign-up-mobile.svg")'; // Set the new image source
       } else {
